@@ -6,7 +6,7 @@ from apps.user.models import User
 
 class Basket(Model):
     quantity = IntegerField()
-    user = ForeignKey(User, CASCADE)
+    user = ForeignKey(User, CASCADE, 'basket')
     product = ForeignKey(Product, CASCADE)
 
     class Meta:
