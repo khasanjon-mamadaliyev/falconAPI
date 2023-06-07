@@ -11,30 +11,6 @@ class ProductListSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class ProductDetailSerializer(ModelSerializer):
-    class Meta:
-        model = Product
-        exclude = ('updated_at', 'created_at')
-
-
-class BasketCreateSerializer(ModelSerializer):
-    class Meta:
-        model = Basket
-        fields = '__all__'
-
-
-class BasketUpdateSerializer(ModelSerializer):
-    class Meta:
-        model = Basket
-        fields = '__all__'
-
-
-class BasketListSerializer(ModelSerializer):
-    class Meta:
-        model = Basket
-        fields = '__all__'
-
-
 class CategoryListSerializer(ModelSerializer):
     class Meta:
         model = Category

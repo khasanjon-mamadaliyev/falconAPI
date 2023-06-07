@@ -1,4 +1,5 @@
 from django.contrib import admin
+from mptt.admin import DraggableMPTTAdmin
 
 from apps.product.models.basket import Basket
 from apps.product.models.category import Category
@@ -16,8 +17,10 @@ class ProductModelAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class ProductModelAdmin(admin.ModelAdmin):
+class ProductModelAdmin(DraggableMPTTAdmin):
     pass
+    # list_display = ('tree_actions', 'indented_title',)
+    # list_display_links = ('indented_title',)
 
 
 @admin.register(Basket)

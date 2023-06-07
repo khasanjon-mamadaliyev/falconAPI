@@ -29,6 +29,15 @@ class BasketDetailAPIView(UpdateModelMixin, DestroyModelMixin, GenericAPIView):
     queryset = Basket.objects.all()
     serializer_class = BasketSerializer
 
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
 
 class DetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Basket.objects.all()
