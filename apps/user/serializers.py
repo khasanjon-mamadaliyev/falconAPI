@@ -1,6 +1,8 @@
 from django.contrib.auth.hashers import make_password
-from rest_framework.fields import IntegerField
-from rest_framework.serializers import ModelSerializer
+from rest_framework.exceptions import ValidationError
+from rest_framework.fields import IntegerField, EmailField
+from rest_framework.generics import get_object_or_404
+from rest_framework.serializers import ModelSerializer, Serializer
 
 from apps.user.models import User
 
@@ -21,9 +23,10 @@ class UserCreateSerializer(ModelSerializer):
         fields = ('first_name', 'last_name', 'email', 'heading', 'password')
 
 
-class UserActivateSerializer(ModelSerializer):
+class ActivateEmailSerializer(Serializer):
     code = IntegerField()
+    email = EmailField()
 
-    class Meta:
-        model = User
-        fields = ('email', 'code')
+
+class AgainSendCodeSerializer(Serializer):
+    email = EmailField()

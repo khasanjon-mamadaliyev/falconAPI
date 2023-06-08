@@ -6,7 +6,7 @@ from root import settings
 
 
 @shared_task
-def send_email_code(email: str, code: str, first_name: str):
+def send_email_code(email: str, code: int):
     subject = 'Activate Email 😀'
     recipient = [email]
     # Define the HTML content
@@ -17,7 +17,7 @@ def send_email_code(email: str, code: str, first_name: str):
                    <h3>Yur activate code 👇 <h1>{value}</h1></h3>
                </body>
            </html>
-           """.format(value=code, first_name=first_name.title())
+           """.format(value=code, first_name=first_name)
 
     # Create the text content by stripping HTML tags
     text_content = strip_tags(html_content)
