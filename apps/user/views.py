@@ -36,7 +36,7 @@ class UserCreateAPIView(CreateAPIView):
         email = request.data.get('email')
         first_name = request.data.get('first_name')
         code = random_number()
-        send_email_code()
+        send_email_code(email, code, first_name)
         cache.set(email, code, 300)
         print(cache.get(email))
         return super().create(request, *args, **kwargs)

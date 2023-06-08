@@ -1,7 +1,7 @@
 import os.path
 from pathlib import Path
-from . import settings_jazzmin
-from . import settings_email
+from root.settings_jazzmin import *
+from root.settings_email import *
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
