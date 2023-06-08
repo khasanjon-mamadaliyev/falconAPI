@@ -9,9 +9,10 @@ class ProductFilterSet(FilterSet):
 
     class Meta:
         model = Product
-        fields = {
-            'price': ['exact'],
-        }
+        fields = ('category',)
+        # fields = {
+        #     'price': ['exact'],
+        # }
 
 
 class BasketFilterSet(FilterSet):

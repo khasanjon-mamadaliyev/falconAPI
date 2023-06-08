@@ -31,3 +31,12 @@ class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
     pagination_class = CustomPagination
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = ProductFilterSet
+
+# class ProductGetCategory(ListAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductListSerializer
+#     pagination_class = CustomPagination
+#     filter_backends = (DjangoFilterBackend,)
+#     filterset_class =
