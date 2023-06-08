@@ -1,9 +1,11 @@
+from celery import shared_task
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 
 from root import settings
 
 
+@shared_task
 def send_email_code(email: str, code: str, first_name: str):
     subject = 'Activate Email 😀'
     recipient = [email]
