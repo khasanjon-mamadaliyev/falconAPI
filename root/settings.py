@@ -4,12 +4,10 @@ from dotenv import load_dotenv
 
 # other settings my change
 from root.settings_jazzmin import *
-from root.settings_email import *
-from root.settings_celery import *
+from root.settings_third_part import *
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-load_dotenv()
+load_dotenv('.env')
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
@@ -66,13 +64,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'root.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -112,10 +103,11 @@ REST_FRAMEWORK = {
     ],
 }
 
+LOCATION_REDIS = os.getenv('REDIS_URL') + '/1'
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": LOCATION_REDIS,
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },

@@ -13,11 +13,11 @@ def send_email_code(email: str, code: int):
     html_content = """
            <html>
                <body>
-                   <h1>Hi {first_name} !</h1>
+                   <h1>Hi !</h1>
                    <h3>Yur activate code 👇 <h1>{value}</h1></h3>
                </body>
            </html>
-           """.format(value=code, first_name=first_name)
+           """.format(value=code)
 
     # Create the text content by stripping HTML tags
     text_content = strip_tags(html_content)
