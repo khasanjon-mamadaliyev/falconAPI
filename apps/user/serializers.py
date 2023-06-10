@@ -1,7 +1,5 @@
 from django.contrib.auth.hashers import make_password
-from rest_framework.exceptions import ValidationError
 from rest_framework.fields import IntegerField, EmailField
-from rest_framework.generics import get_object_or_404
 from rest_framework.serializers import ModelSerializer, Serializer
 
 from apps.user.models import User
@@ -10,7 +8,7 @@ from apps.user.models import User
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('first_name', 'last_name', 'image', 'phone', 'email', 'heading', 'intro')
 
 
 class UserCreateSerializer(ModelSerializer):

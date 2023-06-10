@@ -25,10 +25,13 @@ def user_activate_email(data):
     email = data.get('email')
     confirm_code = data.get('code')
     code = cache.get(email)
-    if code:
-        if code == confirm_code:
-            User.objects.filter(email=email).update(is_active=True)
-            cache.delete(email)
-            return Response('Successfully activated your email !', status.HTTP_200_OK)
-        return Response('Verify code is not correct', status.HTTP_404_NOT_FOUND)
-    return Response('Your verification code is expired !', status.HTTP_404_NOT_FOUND)
+    user = get_object_or_404(User, email=email)
+    if not user.is_active:
+        if code:
+            if code == confirm_code:
+                User.objects.filter(email=email).update(is_active=True)
+                cache.delete(email)
+                return Response('Successfully activated your email !', status.HTTP_200_OK)
+            return Response('Verify code is not correct', status.HTTP_404_NOT_FOUND)
+        return Response('Your verification code is expired !', status.HTTP_404_NOT_FOUND)
+    raise ValidationError('Email already activated !')
