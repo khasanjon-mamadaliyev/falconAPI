@@ -1,5 +1,6 @@
 from root.settings import *
 
+DEBUG = True
 
 DATABASES = {
     'default': {
