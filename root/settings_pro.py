@@ -1,14 +1,12 @@
 from root.settings import *
 
-load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT')
+        'NAME': 'falcon',
+        'USER': 'falcon_user',
+        'PASSWORD': 'SsU1Q9nHU0lYoftYOLljPGbSrktFvFXl',
+        'HOST': 'dpg-ci3bbgrhp8u1a1eud46g-a.oregon-postgres.render.com',
+        'PORT': 5432
     }
 }
-
