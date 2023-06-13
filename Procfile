@@ -1,2 +1,2 @@
-web: gunicorn --log-level=INFO --workers 128 --threads 1 --worker-class=gevent --max-requests 80000 --max-requests-jitter 700 --timeout 140 root.wsgi:application --error-logfile - --access-logfile -
+web: gunicorn root.wsgi:application
 release: python3 manage.py makemigrations && python3 manage.py migrate
