@@ -119,7 +119,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-LOCATION_REDIS = os.getenv('REDIS_URL') + '/1'
+LOCATION_REDIS = 'rediss://red-chcfofqk728tp998o0f0:QJrqYcRpWG2GIcVdCVg8bD7uEhQhlUbh@oregon-redis.render.com:6379' + '/1'
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
