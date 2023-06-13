@@ -1,2 +1,2 @@
 web: gunicorn root.wsgi
-release: python manage.py migrate
+release: python3 manage.py migrate --no-input && python3 manage.py collectstatic --no-input

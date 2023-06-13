@@ -2,16 +2,20 @@ import os.path
 from pathlib import Path
 
 import dj_database_url
-from decouple import config
 from django.conf.global_settings import DATABASES
 from dotenv import load_dotenv
 
 # other settings my change
 from root.settings_jazzmin import *
 from root.settings_third_part import *
+from pathlib import Path
+
+from dotenv import load_dotenv  # new
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv('.env')
+
+load_dotenv(BASE_DIR / '.env')
+
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = False
@@ -67,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'root.wsgi.application'
-DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'), conn_max_age=600)
+DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'), conn_max_age=600)
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
