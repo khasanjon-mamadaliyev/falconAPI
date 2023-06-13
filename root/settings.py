@@ -1,5 +1,9 @@
 import os.path
 from pathlib import Path
+
+import dj_database_url
+from decouple import config
+from django.conf.global_settings import DATABASES
 from dotenv import load_dotenv
 
 # other settings my change
@@ -29,9 +33,9 @@ INSTALLED_APPS = [
     'django_filters',
     'mptt',
     # my apps
-    'apps.user.apps.UserConfig',
-    'apps.product.apps.ProductConfig',
-    'apps.shared.apps.SharedConfig'
+    'apps.user',
+    'apps.product',
+    'apps.shared'
 ]
 
 MIDDLEWARE = [
@@ -63,17 +67,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'root.wsgi.application'
+DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'), conn_max_age=600)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.getenv('DB_NAME'),
+#         'USER': os.getenv('DB_USER'),
+#         'PASSWORD': os.getenv('DB_PASSWORD'),
+#         'HOST': os.getenv('DB_HOST'),
+#         'PORT': os.getenv('DB_PORT')
+#     }
+# }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT')
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -118,7 +123,7 @@ LOCATION_REDIS = os.getenv('REDIS_URL') + '/1'
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": LOCATION_REDIS,
+        "LOCATION": 'redis://127.0.0.1:6379/1',
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },

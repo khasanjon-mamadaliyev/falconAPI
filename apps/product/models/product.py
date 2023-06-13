@@ -8,7 +8,7 @@ from apps.shared.models import BaseDate
 class Product(BaseDate):
     title = CharField(max_length=300)
     price = IntegerField()
-    discount = SmallIntegerField()
+    discount = SmallIntegerField(default=0, null=True, blank=True)
     description = TextField()
     specifications = JSONField(default=dict, null=True, blank=True)
 
