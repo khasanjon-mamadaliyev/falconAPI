@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -o errexit
-set -o nounset
-
-sleep 10
-
-celery -A root flower
