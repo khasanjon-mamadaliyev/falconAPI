@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER')
+CELERY_BROKER_URL = os.getenv('REDIS_URL')
 # BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 # CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 
