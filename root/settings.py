@@ -71,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'root.wsgi.application'
-DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'), conn_max_age=600)
+# DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'), conn_max_age=600)
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -123,11 +123,11 @@ REST_FRAMEWORK = {
     ],
 }
 
-LOCATION_REDIS = 'rediss://red-chcfofqk728tp998o0f0:QJrqYcRpWG2GIcVdCVg8bD7uEhQhlUbh@oregon-redis.render.com:6379' + '/1'
+LOCATION_REDIS = os.getenv('REDIS_URL') + '/1'
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": 'redis://127.0.0.1:6379/1',
+        "LOCATION": LOCATION_REDIS,
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
