@@ -6,13 +6,13 @@ from django.conf.global_settings import DATABASES
 from dotenv import load_dotenv
 from dotenv import load_dotenv  # new
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-load_dotenv(BASE_DIR / '.env')
-
 from root.settings_jazzmin import *
 from root.settings_third_part import *
 from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 

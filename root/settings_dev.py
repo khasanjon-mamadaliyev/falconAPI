@@ -1,5 +1,3 @@
-import os
-
 from root.settings import *  # noqa
 
 DEBUG = True
