@@ -4,17 +4,15 @@ from pathlib import Path
 import dj_database_url
 from django.conf.global_settings import DATABASES
 from dotenv import load_dotenv
-
-# other settings my change
-from root.settings_jazzmin import *
-from root.settings_third_part import *
-from pathlib import Path
-
 from dotenv import load_dotenv  # new
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / '.env')
+
+from root.settings_jazzmin import *
+from root.settings_third_part import *
+from pathlib import Path
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
